@@ -1,0 +1,185 @@
+/********** Debut Fonts **********/
+/* Definitions des polices personnalisees
+Titre du site :
+Titres : , sans-serif
+Paragraphes : , serif
+
+Equivalence de taille des titres (h) avec "font-size" en "em" et en "px"
+h1 => 2em		=> 32px
+h2 => 1.5em		=> 24px
+h3 => 1.17em	=> 19px
+h4 => 1em		=> 16px
+h5 => 0.83em	=> 13.5px
+h6 => 0.67em	=> 10.5px */
+
+/********** Fin Fonts **********/
+/********** Debut Variables **********/
+:root {
+	/***** Couleurs *****/
+	--Noir: #000000; /* Noir */
+	--Rouge: #FF0000; /* Rouge */
+	--Bleu: #0000FF; /* Bleu */
+	--Violet: #9932CC;
+	--fndHeader: #FFF8DC;
+	--fndMain: #EFEFEF; /* Gris très clair */
+	--fndFooter: #D8EEE0;
+	--fndInput: #EFEFEF; /* Gris très clair */
+	--fndTxtArea: #EFEFEF; /* Gris très clair */
+}
+/********** Fin Variables **********/
+/********** Reset CSS **********/
+/* Pas besoin si Bootstrap chargé */
+
+/********** Debut General **********/
+h1, h2, h3, h4 {
+	text-align: center;
+}
+/********** Fin General **********/
+
+/********** Debut Header **********/
+header {
+
+}
+/********** Debut Menus **********/
+nav {
+
+}
+/***** Debut Menu Header *****/
+
+/***** Fin Menu Header *****/
+/********** Fin Header **********/
+main {
+	display: flex;
+	width: 100%;
+}
+/***** Debut Menu Side *****/
+
+/***** Fin Menu Side *****/
+/********** Fin Menus **********/
+
+/********** Debut Sections **********/
+/***** Debut Section globale *****/
+section {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+section h1 {
+	margin: 20px 0;
+	font-size: 2.8em;
+}
+section h2 {
+	font-size: 2.2em;
+}
+section h3 {
+	font-size: 1.6em;
+}
+section h4 {
+	font-size: 1.2em;
+}
+#word {
+	font-size: 1.4em;
+}
+section div {
+	display: flex;
+	justify-content: space-between;
+	width: 500px;
+}
+section form {
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+}
+section form div {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+section form input, section form select {
+	border-radius: 4px;
+}
+section form button {
+	margin: 20px auto;
+}
+section img {
+	height: 250px;
+}
+/***** Fin Section globale *****/
+/***** Debut Page Accueil *****/
+#section_accueil {
+
+}
+/***** Fin Page Accueil *****/
+/***** Debut Page Start *****/
+#section_start {
+
+}
+/***** Fin Page Start *****/
+/***** Debut Page Play *****/
+#section_play {
+
+}
+#section_play form div {
+	justify-content: space-around;
+}
+/***** Fin Page Play *****/
+/***** Debut Page Win *****/
+#section_win {
+
+}
+/***** Fin Page Win *****/
+/***** Debut Page Loose *****/
+#section_loose {
+
+}
+/***** Fin Page Loose *****/
+/********** Fin Sections **********/
+/********** Debut Footer **********/
+footer {
+
+}
+/********** Fin Footer *********/
+
+/********** Design Responsive **********/
+@media screen and (max-width: 1199px) {
+	/********** Debut Header **********/
+	header {
+
+	}
+
+	/********** Debut Menus **********/
+	nav {
+
+	}
+
+	#nav_header {
+
+	}
+
+	/********** Fin Header **********/
+	#main {
+
+	}
+
+	#nav_side {
+
+	}
+
+	/********** Fin Menus **********/
+	/********** Debut Sections **********/
+	section {
+
+	}
+
+	/********** Fin Sections **********/
+	/********** Debut Footer **********/
+	footer {
+
+	}
+
+	/********** Fin Footer **********/
+}
