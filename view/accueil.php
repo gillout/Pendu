@@ -1,6 +1,7 @@
 <?php
 
 use Core\Html\Form;
+use Model\Pendu;
 
 ?>
 
@@ -15,7 +16,11 @@ use Core\Html\Form;
         <form class="form_accueil" action="?target=start" method="POST">
 
             <div>
-                <?= $form->input('playerName', 'Prénom :', ['required' => 'required']); ?>
+                <?= $form->input('player', 'Prénom :', ['required' => 'required']); ?>
+            </div>
+
+            <div>
+                <?= $form->select('level', Pendu::LEVELS, 'Level :', 'Choose a level', ['required' => 'required']); ?>
             </div>
 
             <button class="btn btn-info">Valider</button>

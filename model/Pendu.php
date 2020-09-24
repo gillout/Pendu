@@ -15,6 +15,11 @@ class Pendu
     private $player;
 
     /**
+     * @var int
+     */
+    private $level;
+
+    /**
      * Mot actuel à trouver
      * @var string $word
      */
@@ -44,7 +49,7 @@ class Pendu
      */
     private $failures;
 
-    const MAX_ECHEC = 12;
+    const LEVELS = [0 => 'Facile', 3 => 'Moyen', 6 => 'Difficile'];
     const LETTERS = ['a' => 'A', 'b' => 'B', 'c' => 'C', 'd' => 'D', 'e' => 'E', 'f' => 'F', 'g' => 'G', 'h' => 'H',
         'i' => 'I', 'j' => 'J', 'k' => 'K', 'l' => 'L', 'm' => 'M', 'n' => 'N', 'o' => 'O', 'p' => 'P',
         'q' => 'Q', 'r' => 'R', 's' => 'S', 't' => 'T', 'u' => 'U', 'v' => 'V', 'w' => 'W', 'x' => 'X', 'y' => 'Y', 'z' => 'Z'];
@@ -65,6 +70,13 @@ class Pendu
      */
     public function __construct()
     {
+        $this->player = '';
+        $this->level = 0;
+        $this->word = '';
+        $this->state = '';
+        $this->lettersTried = '';
+        $this->attempts = 0;
+        $this->failures = 0;
     }
 
     /**
@@ -97,6 +109,22 @@ class Pendu
     public function setWord(string $word): void
     {
         $this->word = $word;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLevel(): int
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param int $level
+     */
+    public function setLevel(int $level): void
+    {
+        $this->level = $level;
     }
 
     /**

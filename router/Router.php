@@ -61,7 +61,7 @@ class Router
     {
         $ctrl = new PenduCtrl();
         $form = new Form($_POST);
-        $ctrl->start($form);
+        $ctrl->newGame($form->getValue('player'), $form->getValue('level'));
     }
 
     private function play(): void
@@ -74,8 +74,7 @@ class Router
     private function replay(): void
     {
         $ctrl = new PenduCtrl();
-        $form = new Form();
-        $ctrl->start($form);
+        $ctrl->replay();
     }
 
     private function leave(): void

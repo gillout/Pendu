@@ -38,23 +38,29 @@ class PenduCtrl extends Controller
         $this->render(ROOT_DIR . 'view/accueil.php', compact('form'));
     }
 
-    public function start($form): void
+    /**
+     * Créé un nouveau jeu de pendu avec le nom du joueur et le niveau de difficulté
+     * @param string $player
+     * @param int $level
+     * @return void
+     */
+    public function newGame(string $player, int $level): void
+    {
+        $pendu = new Pendu();
+        $pendu->setPlayer($player);
+        $pendu->setLevel($level);
+        $pendu->randomWord();
+        $pendu->setState(str_pad('', strlen($pendu->getWord()), '_'));
+        $pendu->setFailures(12 - $level);
+        $this->PenduManager->save($pendu);
+        $form = new Form();
+        $this->render(ROOT_DIR . 'view/play.php', compact('form', 'pendu'));
+    }
+
+    public function replay()
     {
         $pendu = $this->PenduManager->find();
-        if (!empty($form->getValue('playerName'))) {
-            $playerName = $form->getValue('playerName');
-            $pendu->setPlayer($playerName);
-        }
-        $pendu->randomWord();
-        if ($pendu->getState() == null) {
-            $state = $pendu->getWord();
-            for ($i = 0; $i < strlen($state); $i++) {
-                $state[$i] = '_';
-            }
-            $pendu->setState($state);
-        }
-        $this->PenduManager->save($pendu);
-        $this->render(ROOT_DIR . 'view/play.php', compact('form', 'pendu'));
+        $this->newGame($pendu->getPlayer(), $pendu->getLevel());
     }
 
     /**
@@ -80,10 +86,10 @@ class PenduCtrl extends Controller
                 }
             } else {
                 $failures = $pendu->getFailures();
-                $failures++;
+                $failures--;
                 $pendu->setFailures($failures);
                 $this->PenduManager->save($pendu);
-                if ($pendu->getFailures() > $pendu::MAX_ECHEC) {
+                if ($pendu->getFailures() < 0) {
                     $this->loose($pendu);
                 }
             }
