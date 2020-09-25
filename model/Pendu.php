@@ -15,6 +15,7 @@ class Pendu
     private $player;
 
     /**
+     * Niveau de difficulté du jeu
      * @var int
      */
     private $level;
@@ -44,15 +45,26 @@ class Pendu
     private $attempts;
 
     /**
-     * Nombre de lettres indiquées ne se trouvant pas dans le mot à trouver
+     * Nombre d'échecs restants avant de perdre la partie
      * @var int $failures
      */
     private $failures;
 
-    const LEVELS = [0 => 'Facile', 3 => 'Moyen', 6 => 'Difficile'];
+    /**
+     * Tableau des niveaux de difficultés, à déduire du nombre d'échecs maximum avant de perdre
+     */
+    const LEVELS = [0 => 'Facile', 3 => 'Moyenne', 6 => 'Difficile'];
+
+    /**
+     * Tableau contenant les différentes possibles
+     */
     const LETTERS = ['a' => 'A', 'b' => 'B', 'c' => 'C', 'd' => 'D', 'e' => 'E', 'f' => 'F', 'g' => 'G', 'h' => 'H',
         'i' => 'I', 'j' => 'J', 'k' => 'K', 'l' => 'L', 'm' => 'M', 'n' => 'N', 'o' => 'O', 'p' => 'P',
         'q' => 'Q', 'r' => 'R', 's' => 'S', 't' => 'T', 'u' => 'U', 'v' => 'V', 'w' => 'W', 'x' => 'X', 'y' => 'Y', 'z' => 'Z'];
+
+    /**
+     * Tableaux contenants les différents mots du dictionnaire du jeu
+     */
     const WORDS4LETTERS = ['VELO', 'OURS', 'BLEU', 'NOEL', 'CHAT', 'SOIF', 'LOTO', 'PILE', 'FAIM', 'GITE'];
     const WORDS5LETTERS = ['AVION', 'FLEUR', 'MELON', 'ROUGE', 'DINER', 'POMME', 'SALON', 'COEUR', 'NEIGE', 'LAPIN'];
     const WORDS6LETTERS = ['ANANAS', 'MANGER', 'ORANGE', 'MAISON', 'BILLES', 'SOLEIL', 'VIOLET', 'PAPIER', 'ETOILE', 'PECHER'];
@@ -96,22 +108,6 @@ class Pendu
     }
 
     /**
-     * @return string
-     */
-    public function getWord(): string
-    {
-        return $this->word;
-    }
-
-    /**
-     * @param string $word
-     */
-    public function setWord(string $word): void
-    {
-        $this->word = $word;
-    }
-
-    /**
      * @return int
      */
     public function getLevel(): int
@@ -125,6 +121,22 @@ class Pendu
     public function setLevel(int $level): void
     {
         $this->level = $level;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWord(): string
+    {
+        return $this->word;
+    }
+
+    /**
+     * @param string $word
+     */
+    public function setWord(string $word): void
+    {
+        $this->word = $word;
     }
 
     /**

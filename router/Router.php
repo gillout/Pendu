@@ -61,7 +61,9 @@ class Router
     {
         $ctrl = new PenduCtrl();
         $form = new Form($_POST);
-        $ctrl->newGame($form->getValue('player'), $form->getValue('level'));
+        $ctrl->newGame($form->getValue('player'),
+            $form->getValue('level'),
+            (isset($_POST['failures']) ? $form->getValue('failures') : null));
     }
 
     private function play(): void

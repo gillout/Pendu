@@ -32,8 +32,8 @@ use Core\Util\SuccessManager;
         <p>Que voulez-vous faire à présent ?</p>
 
         <p>
-            <a href="?target=replay"><button class="btn btn-primary">Rejouer</button></a>
-            <a href="?target=leave"><button class="btn btn-secondary">Quitter</button></a>
+            <a href="?target=replay"><button class="btn btn-success">Rejouer</button></a>
+            <a href="?target=leave"><button class="btn btn-warning">Quitter</button></a>
         </p>
 
         <audio controls>

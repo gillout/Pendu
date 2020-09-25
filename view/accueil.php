@@ -9,7 +9,9 @@ use Model\Pendu;
 
     <h1><strong>Bienvenue</strong></h1>
 
-    <p>Afin d'accéder au jeu, veuillez entrer votre prénom.</p>
+    <p>Afin d'accéder au jeu, veuillez entrer votre prénom,</p>
+
+    <p>ainsi que sélectionner un niveau de difficulté.</p>
 
     <?php if ($form instanceof Form) : ?>
 
@@ -20,10 +22,10 @@ use Model\Pendu;
             </div>
 
             <div>
-                <?= $form->select('level', Pendu::LEVELS, 'Level :', 'Choose a level', ['required' => 'required']); ?>
+                <?= $form->select('level', Pendu::LEVELS, 'Difficulté :', 'Choose a level', ['required' => 'required']); ?>
             </div>
 
-            <button class="btn btn-info">Valider</button>
+            <button class="btn btn-primary">Valider</button>
 
         </form>
 

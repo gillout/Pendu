@@ -35,36 +35,34 @@ class PenduCtrl extends Controller
      */
     public function home(Form $form): void
     {
+        if (array_key_exists('player', $form->getDatas())) {
+            $form->add('player', $form->getValue('player'));
+        }
         $this->render(ROOT_DIR . 'view/accueil.php', compact('form'));
     }
 
     /**
-     * Créé un nouveau jeu de pendu avec le nom du joueur et le niveau de difficulté
+     * Crée un nouveau jeu de pendu avec le nom du joueur et le niveau de difficulté
      * @param string $player
      * @param int $level
+     * @param int|null $failures
      * @return void
      */
-    public function newGame(string $player, int $level): void
+    public function newGame(string $player, int $level, ?int $failures = null): void
     {
         $pendu = new Pendu();
         $pendu->setPlayer($player);
         $pendu->setLevel($level);
         $pendu->randomWord();
         $pendu->setState(str_pad('', strlen($pendu->getWord()), '_'));
-        $pendu->setFailures(12 - $level);
+        $pendu->setFailures($failures == null ? (12 - $pendu->getLevel()) : $failures);
         $this->PenduManager->save($pendu);
         $form = new Form();
         $this->render(ROOT_DIR . 'view/play.php', compact('form', 'pendu'));
     }
 
-    public function replay()
-    {
-        $pendu = $this->PenduManager->find();
-        $this->newGame($pendu->getPlayer(), $pendu->getLevel());
-    }
-
     /**
-     * Affiche la page principale du jeu, c'est là qu'une lettre est entrée
+     * Affiche la page principale du jeu, c'est là qu'une lettre est demandée
      * @param Form $form
      * @return void
      */
@@ -99,6 +97,18 @@ class PenduCtrl extends Controller
     }
 
     /**
+     * Renvoi sur la page d'accueil avec le nom déjà renseigné
+     * @return void
+     */
+    public function replay(): void
+    {
+        $pendu = $this->PenduManager->find();
+        $form = new Form();
+        $form->add('player', $pendu->getPlayer());
+        $this->home($form);
+    }
+
+    /**
      * Envoi vers la page du gagnant
      * @param Pendu $pendu
      * @return void
@@ -118,6 +128,9 @@ class PenduCtrl extends Controller
         $this->render(ROOT_DIR . 'view/loose.php', compact('pendu'));
     }
 
+    /**
+     *
+     */
     public function leave(): void
     {
         session_destroy();
