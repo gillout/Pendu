@@ -88,6 +88,9 @@ section h4 {
 #word {
 	font-size: 1.4em;
 }
+#change_word {
+	width: 150px;
+}
 section div {
 	display: flex;
 	justify-content: space-between;

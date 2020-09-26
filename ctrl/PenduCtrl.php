@@ -54,7 +54,7 @@ class PenduCtrl extends Controller
         $pendu->setPlayer($player);
         $pendu->setLevel($level);
         $pendu->randomWord();
-        $pendu->setState(str_pad('', strlen($pendu->getWord()), '_'));
+        $pendu->startingState();
         $pendu->setFailures($failures == null ? (12 - $pendu->getLevel()) : $failures);
         $this->PenduManager->save($pendu);
         $form = new Form();
@@ -62,7 +62,7 @@ class PenduCtrl extends Controller
     }
 
     /**
-     * Affiche la page principale du jeu, c'est là qu'une lettre est demandée
+     * Affiche la page principale du jeu, c'est là qu'une lettre est attendue
      * @param Form $form
      * @return void
      */
@@ -73,9 +73,7 @@ class PenduCtrl extends Controller
         $tried = ' ' . $pendu->getLettersTried() . $letter . ' ';
         $pendu->setLettersTried($tried);
         if ($letter != null && $letter != '' && $letter != ' ') {
-            $tentatives = $pendu->getAttempts();
-            $tentatives++;
-            $pendu->setAttempts($tentatives);
+            $pendu->incrementAttempts();
             if ($pendu->letterPresent($letter)) {
                 $pendu->addLetter($letter);
                 $this->PenduManager->save($pendu);
@@ -83,9 +81,7 @@ class PenduCtrl extends Controller
                     $this->win($pendu);
                 }
             } else {
-                $failures = $pendu->getFailures();
-                $failures--;
-                $pendu->setFailures($failures);
+                $pendu->decrementFailures();
                 $this->PenduManager->save($pendu);
                 if ($pendu->getFailures() < 0) {
                     $this->loose($pendu);

@@ -48,7 +48,7 @@ use Core\Util\SuccessManager;
 
     <?php if ($form instanceof Form) : ?>
 
-        <form action="?target=start" method="POST">
+        <form id="change_word" action="?target=start" method="POST">
 
             <input type="text" name="player" value="<?= $pendu->getPlayer(); ?>" hidden>
             <input type="text" name="level" value="<?= $pendu->getLevel(); ?>" hidden>

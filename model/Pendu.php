@@ -53,7 +53,7 @@ class Pendu
     /**
      * Tableau des niveaux de difficultés, à déduire du nombre d'échecs maximum avant de perdre
      */
-    const LEVELS = [0 => 'Facile', 3 => 'Moyenne', 6 => 'Difficile'];
+    const LEVELS = [3 => 'Facile', 6 => 'Moyenne', 9 => 'Difficile'];
 
     /**
      * Tableau contenant les différentes possibles
@@ -224,6 +224,47 @@ class Pendu
         $randowKey = array_rand($allWords,1);
         $word = $allWords[$randowKey];
         $this->setWord($word);
+    }
+
+    /**
+     * Génére l'état de départ du mot à trouver en fonction de sa taille
+     * Si la taille du mot est inférieure ou égale à 7 alors toutes les lettres sont remplacées par le caractère "_"
+     * Si la taille du mot est inférieure ou égale à 11 alors on affiche la première lettre et toutes les autres sont remplacées par le caractère "_"
+     * Si la taille du mot est supérieure à 11 on affiche la première et la dernière lettre, puis toutes les autres sont remplacées par le caractère "_"
+     * @return void
+     */
+    public function startingState(): void
+    {
+        $len = strlen($this->getWord());
+        if ($len <= 7) {
+            $this->setState(str_pad('', $len, '_'));
+        } else if ($len <= 11) {
+            $this->setState(str_pad($this->getWord()[0], $len, '_'));
+        } else {
+            $this->setState((str_pad($this->getWord()[0], $len - 1, '_')) . $this->getWord()[$len - 1]);
+        }
+    }
+
+    /**
+     * Incrémente le nombre de tentatives pour chaque lettre entrée
+     * @return void
+     */
+    public function incrementAttempts(): void
+    {
+        $tentatives = $this->getAttempts();
+        $tentatives++;
+        $this->setAttempts($tentatives);
+    }
+
+    /**
+     * Décrémente le nombre d'echecs restants pour chaque lettre entrée n'existant pas dans le mot à trouver
+     * @return void
+     */
+    public function decrementFailures(): void
+    {
+        $failures = $this->getFailures();
+        $failures--;
+        $this->setFailures($failures);
     }
 
     /**
