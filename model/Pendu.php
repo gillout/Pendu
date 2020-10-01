@@ -4,6 +4,7 @@ namespace Model;
 
 /**
  * Class Pendu
+ * @package Model
  */
 class Pendu
 {
@@ -251,9 +252,7 @@ class Pendu
      */
     public function incrementAttempts(): void
     {
-        $tentatives = $this->getAttempts();
-        $tentatives++;
-        $this->setAttempts($tentatives);
+        $this->attempts++;
     }
 
     /**
@@ -262,9 +261,7 @@ class Pendu
      */
     public function decrementFailures(): void
     {
-        $failures = $this->getFailures();
-        $failures--;
-        $this->setFailures($failures);
+        $this->failures--;
     }
 
     /**

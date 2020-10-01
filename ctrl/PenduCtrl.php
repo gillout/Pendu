@@ -45,17 +45,16 @@ class PenduCtrl extends Controller
      * Crée un nouveau jeu de pendu avec le nom du joueur et le niveau de difficulté
      * @param string $player
      * @param int $level
-     * @param int|null $failures
      * @return void
      */
-    public function newGame(string $player, int $level, ?int $failures = null): void
+    public function newGame(string $player, int $level): void
     {
         $pendu = new Pendu();
         $pendu->setPlayer($player);
         $pendu->setLevel($level);
         $pendu->randomWord();
         $pendu->startingState();
-        $pendu->setFailures($failures == null ? (12 - $pendu->getLevel()) : $failures);
+        $pendu->setFailures(12 - $pendu->getLevel());
         $this->PenduManager->save($pendu);
         $form = new Form();
         $this->render(ROOT_DIR . 'view/play.php', compact('form', 'pendu'));
@@ -93,6 +92,22 @@ class PenduCtrl extends Controller
     }
 
     /**
+     * Affiche la pag principale du jeu avec un nouveau mot, et garde le nombre d'échecs ainsi que le nombre de lettres déjà essayées
+     * @return void
+     */
+    public function newWord(): void
+    {
+
+        $pendu = $this->PenduManager->find();
+        $pendu->randomWord();
+        $pendu->startingState();
+        $pendu->setLettersTried('');
+        $this->PenduManager->save($pendu);
+        $form = new Form();
+        $this->render(ROOT_DIR . 'view/play.php', compact('form', 'pendu'));
+    }
+
+    /**
      * Renvoi sur la page d'accueil avec le nom déjà renseigné
      * @return void
      */
@@ -125,7 +140,8 @@ class PenduCtrl extends Controller
     }
 
     /**
-     *
+     * Envoi vers la page d'accueil après avoir fermé la session
+     * @return void
      */
     public function leave(): void
     {

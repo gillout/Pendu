@@ -46,17 +46,7 @@ use Core\Util\SuccessManager;
 
         <p id="word"><?= $chaine; ?></p>
 
-    <?php if ($form instanceof Form) : ?>
-
-        <form id="change_word" action="?target=start" method="POST">
-
-            <input type="text" name="player" value="<?= $pendu->getPlayer(); ?>" hidden>
-            <input type="text" name="level" value="<?= $pendu->getLevel(); ?>" hidden>
-            <input type="text" name="failures" value="<?= $pendu->getFailures(); ?>" hidden>
-
-            <button class="btn btn-info">Changer de mot</button>
-
-        </form>
+        <p><a class="btn btn-info" href="?target=word">Changer de mot</a></p>
 
     </div>
 
@@ -71,8 +61,6 @@ use Core\Util\SuccessManager;
             <button class="btn btn-primary">Valider</button>
 
         </form>
-
-    <?php endif; ?>
 
         <figure><img src="<?= 'imgs/failure' . $pendu->getFailures() . '.png' ; ?>" alt="Pendu en cours"></figure>
 

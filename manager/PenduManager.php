@@ -4,6 +4,10 @@ namespace Manager;
 
 use Model\Pendu;
 
+/**
+ * Class PenduManager
+ * @package Manager
+ */
 class PenduManager
 {
 

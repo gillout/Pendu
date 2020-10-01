@@ -36,6 +36,9 @@ class Router
                 case 'play':
                     $this->play();
                     break;
+                case 'word':
+                    $this->newWord();
+                    break;
                 case 'replay':
                     $this->replay();
                     break;
@@ -62,8 +65,7 @@ class Router
         $ctrl = new PenduCtrl();
         $form = new Form($_POST);
         $ctrl->newGame($form->getValue('player'),
-            $form->getValue('level'),
-            (isset($_POST['failures']) ? $form->getValue('failures') : null));
+            $form->getValue('level'));
     }
 
     private function play(): void
@@ -71,6 +73,12 @@ class Router
         $ctrl = new PenduCtrl();
         $form = new Form($_POST);
         $ctrl->play($form);
+    }
+
+    private function newWord(): void
+    {
+        $ctrl = new PenduCtrl();
+        $ctrl->newWord();
     }
 
     private function replay(): void
