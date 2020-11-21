@@ -3,7 +3,6 @@
 namespace Core\Ctrl;
 
 /**
- * Class Controller
  * Classe mère du contrôleur de tous nos contrôleurs pour le site du Pendu
  * @package Core\Ctrl
  */

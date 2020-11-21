@@ -30,7 +30,7 @@ class PenduCtrl extends Controller
 
     /**
      * Affiche la page d'accueil
-     * @param $form
+     * @param Form $form
      * @return void
      */
     public function home(Form $form): void

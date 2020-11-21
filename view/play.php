@@ -3,6 +3,7 @@
 use Core\Html\Form;
 use Core\Util\ErrorManager;
 use Core\Util\SuccessManager;
+use Model\Pendu;
 
 ?>
 
@@ -55,7 +56,7 @@ use Core\Util\SuccessManager;
         <form class="form_start" action="?target=play" method="POST">
 
             <div>
-                <?= $form->select('letter', $letters = $pendu::LETTERS, 'Lettre :', 'Choose a letter', ['required' => 'required']); ?>
+                <?= $form->select('letter', Pendu::LETTERS, 'Lettre :', 'Choisis une lettre', ['required' => 'required']); ?>
             </div>
 
             <button class="btn btn-primary">Valider</button>
