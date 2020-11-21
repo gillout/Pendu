@@ -40,7 +40,6 @@ class PenduManager
      */
     public function save(Pendu $pendu): void
     {
-//        $_SESSION['pendu'] = (array) $pendu;
         $_SESSION['player'] = $pendu->getPlayer();
         $_SESSION['level'] = $pendu->getLevel();
         $_SESSION['word'] = $pendu->getWord();

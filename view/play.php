@@ -1,10 +1,10 @@
 <?php
 
-use Core\Html\Form;
 use Core\Util\ErrorManager;
 use Core\Util\SuccessManager;
 use Model\Pendu;
 
+if (isset($pendu, $form)) {
 ?>
 
 <section id="section_play">
@@ -68,3 +68,6 @@ use Model\Pendu;
     </div>
 
 </section>
+<?php
+}
+?>
